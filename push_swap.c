@@ -6,43 +6,50 @@
 /*   By: rha-le <rha-le@student.42berlin.de>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 16:35:55 by rha-le            #+#    #+#             */
-/*   Updated: 2025/02/11 17:34:39 by rha-le           ###   ########.fr       */
+/*   Updated: 2025/02/12 18:32:16 by rha-le           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "push_swap.h"
 #include "libft/libft.h"
 #include <stddef.h>
 
-int	create_list(int argc, char *argv[], char ***args)
+int	*create_list(int argc, char *argv[])
 {
-	int	i;
+	char	**temp;
+	int		*stack;
+	int		i;
 
 	i = 0;
-	if (argc == 1)
-		return (-1);
+	temp = NULL;
 	if (argc == 2)
-		*args = ft_split(argv[1], ' ');
-	else if (argc > 2)
 	{
-		*args = (char **) malloc(sizeof(char *) * argc);
-		if (!args)
-			return (-1);
-		while (++i < argc)
-			*args[i - 1] = argv[i];
-		*args[argc] = NULL;
+		temp = ft_split(argv[1], ' ');
+		stack = atoi_arr(temp, argc, argv, SINGLE);
+		while (temp[i])
+			free(temp[i++]);
+		free(temp);
 	}
-	return (0);
+	else
+		stack = atoi_arr(temp, argc, argv, MULTI);
+	return (stack);
 }
 
 int	main(int argc, char *argv[])
 {
-	char	**args;
+	int	*stack_a;
+	int	i;
 
-	if (create_list(argc, argv, &args) == -1)
+	i = 0;
+	if (argc == 1)
 		return (1);
-	int i = 0;
-	while (args[i])
+	stack_a = create_list(argc, argv);
+	if (stack_a == NULL)
+		return (1);
+	while (stack_a[i])
 	{
-		ft_printf("%s\n");
+		ft_printf("%i\n", stack_a[i]);
+		i++;
 	}
+	free(stack_a);
 }

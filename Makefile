@@ -2,15 +2,16 @@ NAME = push_swap
 HEADER = push_swap.h
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
-SRC = push_swap.c
+SRC = push_swap.c utils.c
 OBJ = $(SRC:.c=.o)
 LIBFT_DIR = ./libft/
 LIBFT = $(LIBFT_DIR)/libft.a
 
-$(LIBFT):
-	make -C $(LIBFT_DIR)
 
 all: $(NAME)
+
+$(LIBFT):
+	make -C $(LIBFT_DIR)
 
 $(NAME): $(OBJ) $(LIBFT)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LIBFT)
