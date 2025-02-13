@@ -28,7 +28,8 @@ int	is_argvalid(char *argv[])
 		j = 0;
 		while (argv[i][j])
 		{
-			if(!ft_isdigit(argv[i][j]) && argv[i][j] != ' ')
+			if (!ft_isdigit(argv[i][j]) && argv[i][j] != ' ' \
+				&& argv[i][j] != '-')
 				valid = 0;
 			j++;
 		}
@@ -37,7 +38,7 @@ int	is_argvalid(char *argv[])
 	return (valid);
 }
 
-int count_args(char *argv[])
+int	count_args(char *argv[])
 {
 	size_t	i;
 
@@ -47,7 +48,7 @@ int count_args(char *argv[])
 	return (i);
 }
 
-int *atoi_arr(int argc, char *argv[])
+int	*atoi_arr(int argc, char *argv[])
 {
 	int	*stack;
 	int	i;
@@ -69,7 +70,7 @@ int *atoi_arr(int argc, char *argv[])
 	return (stack);
 }
 
-void free_args(char *args[])
+void	free_args(char *args[])
 {
 	size_t	i;
 
