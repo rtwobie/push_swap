@@ -16,12 +16,10 @@
 # define INTMAX 2147483647L
 # define INTMIN -2147483648L
 
-#include <stdio.h>
-
 // input.c
 int	*create_list(int argc, char *argv[]);
-int *atoi_arr(int argc, char *argv[]);
+int	*atoi_arr(int argc, char *argv[]);
 int	is_argvalid(char *argv[]);
-int count_args(char *argv[]);
+int	count_args(char *argv[]);
 
 #endif
