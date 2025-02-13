@@ -1,32 +1,54 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   lab.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rha-le <rha-le@student.42berlin.de>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/05 16:35:55 by rha-le            #+#    #+#             */
-/*   Updated: 2025/02/13 17:25:40 by rha-le           ###   ########.fr       */
+/*   Created: 2025/02/13 15:53:41 by rha-le            #+#    #+#             */
+/*   Updated: 2025/02/13 16:03:25 by rha-le           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-#include "libft/libft.h"
+#include <stdio.h>
 #include <stddef.h>
+#include "libft/libft.h"
+
+int	is_argvalid(char *argv[])
+{
+	size_t	i;
+	size_t	j;
+	int		valid;
+
+	i = 1;
+	j = 0;
+	valid = 1;
+	while (argv[i])
+	{
+		j = 0;
+		while (argv[i][j])
+		{
+			if(!ft_isdigit(argv[i][j]) && argv[i][j] != ' ')
+				valid = 0;
+			j++;
+		}
+		i++;
+	}
+	return (valid);
+}
 
 int	main(int argc, char *argv[])
 {
-	int		*stack_a;
-	int		i;
-
-	i = 0;
-	stack_a = create_list(argc, argv);
-	if (stack_a == NULL)
-		return (1);
-	while (stack_a[i])
+	if (argc == 1)
 	{
-		ft_printf("%i\n", stack_a[i]);
-		i++;
+		printf("not enough args\n");
+		return (1);
 	}
-	free(stack_a);
+	if (is_argvalid(argv) == 0)
+	{
+		printf("input is invalid\n");
+		return (1);
+	}
+	printf("input is valid\n");
+	return (0);
 }
