@@ -80,25 +80,27 @@ void	free_args(char *args[])
 	free(args);
 }
 
-int	*create_list(int argc, char *argv[])
+int	create_lists(int argc, char *argv[], int **stack_a, int **stack_b)
 {
 	char	**args;
 	int		argn;
-	int		*stack;
 
 	if (argc == 1)
-		return (NULL);
+		return (-1);
 	args = argv + 1;
 	argn = argc - 1;
 	if (!is_argvalid(args))
-		return (NULL);
+		return (-1);
 	if (argc == 2)
 	{
 		args = ft_split(argv[1], ' ');
 		argn = count_args(args);
 	}
-	stack = atoi_arr(argn, args);
+	*stack_a = atoi_arr(argn, args);
+	*stack_b = (int *) ft_calloc(sizeof(int), argn);
+	if (!*stack_b)
+		return (-1);
 	if (argc == 2)
 		free_args(args);
-	return (stack);
+	return (0);
 }

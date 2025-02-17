@@ -17,9 +17,13 @@
 # define INTMIN -2147483648L
 
 // input.c
-int	*create_list(int argc, char *argv[]);
+int	create_lists(int argc, char *argv[], int **stack_a, int **stack_b);
 int	*atoi_arr(int argc, char *argv[]);
 int	is_argvalid(char *argv[]);
 int	count_args(char *argv[]);
+
+// push_swap.c
+void	swap(int **stack);
+void	push(int *src, int *dest);
 
 #endif

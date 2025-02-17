@@ -5,28 +5,31 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rha-le <rha-le@student.42berlin.de>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/05 16:35:55 by rha-le            #+#    #+#             */
-/*   Updated: 2025/02/13 17:25:40 by rha-le           ###   ########.fr       */
+/*   Created: 2025/02/17 15:56:05 by rha-le            #+#    #+#             */
+/*   Updated: 2025/02/17 16:13:14 by rha-le           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
 #include "libft/libft.h"
-#include <stddef.h>
 
-int	main(int argc, char *argv[])
+void	swap(int **stack)
 {
-	int		*stack_a;
-	int		i;
+	int	temp;
 
-	i = 0;
-	stack_a = create_list(argc, argv);
-	if (stack_a == NULL)
-		return (1);
-	while (stack_a[i])
+	temp = *stack[1];
+	*stack[1] = *stack[0];
+	*stack[0] = temp;
+}
+
+void	push(int *src, int *dest, int length)
+{
+	ft_realloc(dest, sizeof(int) * (length + 1));
+	if (!dest)
+		return ;
+	while (length)
 	{
-		ft_printf("%i\n", stack_a[i]);
-		i++;
+		dest[length + 1] = dest[length];
+		length--;
 	}
-	free(stack_a);
+	dest[0] = src[0];
 }
