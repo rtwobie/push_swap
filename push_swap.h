@@ -23,7 +23,9 @@ int	is_argvalid(char *argv[]);
 int	count_args(char *argv[]);
 
 // push_swap.c
-void	swap(int **stack);
-void	push(int *src, int *dest);
+void	swap(int *stack);
+void	push(int src, int *dest, int length);
+void	rot(int *stack, int length);
+void	rrot(int *stack, int length);
 
 #endif

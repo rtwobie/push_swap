@@ -18,10 +18,12 @@ int	main(int argc, char *argv[])
 {
 	int		*stack_a;
 	int		*stack_b;
+	int		argn;
 	int		i;
 
 	i = 0;
-	if (create_lists(argc, argv, &stack_a, &stack_b) == -1)
+	argn = create_lists(argc, argv, &stack_a, &stack_b);
+	if (!argn)
 		return (1);
 	if (stack_a == NULL)
 		return (1);
@@ -31,16 +33,14 @@ int	main(int argc, char *argv[])
 		ft_printf("a: %i\n", stack_a[i]);
 		i++;
 	}
-	stack_b[0] = 99;
-	ft_printf("b: %i\n", stack_b[0]);
 	ft_printf("after\n");
-	push(stack_b, stack_a);
-	/*i = 0;*/
-	/*while (stack_a[i])*/
-	/*{*/
-	/*	ft_printf("a: %i\n", stack_a[i]);*/
-	/*	i++;*/
-	/*}*/
+	push(99, stack_a, argn);
+	i = 0;
+	while (stack_a[i])
+	{
+		ft_printf("a: %i\n", stack_a[i]);
+		i++;
+	}
 	free(stack_a);
 	free(stack_b);
 }

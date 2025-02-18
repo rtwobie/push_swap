@@ -14,41 +14,23 @@
 #include <stddef.h>
 #include "libft/libft.h"
 
-int	is_argvalid(char *argv[])
+void	push(int src, int *dest, int length)
 {
-	size_t	i;
-	size_t	j;
-	int		valid;
-
-	i = 1;
-	j = 0;
-	valid = 1;
-	while (argv[i])
-	{
-		j = 0;
-		while (argv[i][j])
-		{
-			if(!ft_isdigit(argv[i][j]) && argv[i][j] != ' ')
-				valid = 0;
-			j++;
-		}
-		i++;
-	}
-	return (valid);
+	ft_realloc(dest, sizeof(int) * (length + 1));
+	if (!dest)
+		return ;
+	while (length--)
+		dest[length + 1] = dest[length];
+	dest[0] = src;
 }
 
 int	main(int argc, char *argv[])
 {
-	if (argc == 1)
-	{
-		printf("not enough args\n");
-		return (1);
-	}
-	if (is_argvalid(argv) == 0)
-	{
-		printf("input is invalid\n");
-		return (1);
-	}
-	printf("input is valid\n");
+	int *arr;
+	int i = 0;
+
+	arr = (int *) malloc(sizeof(int) * 3);
+	while (++i <= 3)
+		arr[i] = i;
 	return (0);
 }

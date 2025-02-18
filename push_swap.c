@@ -12,24 +12,48 @@
 
 #include "libft/libft.h"
 
-void	swap(int **stack)
+void	swap(int *stack)
 {
 	int	temp;
 
-	temp = *stack[1];
-	*stack[1] = *stack[0];
-	*stack[0] = temp;
+	temp = stack[1];
+	stack[1] = stack[0];
+	stack[0] = temp;
 }
 
-void	push(int *src, int *dest, int length)
+void	rrot(int *stack, int length)
 {
-	ft_realloc(dest, sizeof(int) * (length + 1));
+	int	temp;
+
+	temp = stack[length - 1];
+	while (--length > 0)
+	{
+		stack[length] = stack[length - 1];
+	}
+	stack[0] = temp;
+}
+
+void	rot(int *stack, int length)
+{
+	int	i;
+	int	temp;
+
+	i = 0;
+	temp = stack[0];
+	while (i < length)
+	{
+		stack[i] = stack[i + 1];
+		i++;
+	}
+	stack[length - 1] = temp;
+}
+
+void	push(int src, int *dest, int length)
+{
+	dest = realloc(dest, sizeof(int) * (++length));
 	if (!dest)
 		return ;
-	while (length)
-	{
-		dest[length + 1] = dest[length];
-		length--;
-	}
-	dest[0] = src[0];
+	rrot(dest, length);
+	dest[0] = src;
 }
+
