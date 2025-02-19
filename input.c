@@ -48,15 +48,18 @@ int	count_args(char *argv[])
 	return (i);
 }
 
-int	*atoi_arr(int argc, char *argv[])
+t_elem	*atoi_arr(int argc, char *argv[])
 {
-	int	*stack;
-	int	i;
+	t_elem	*stack;
+	int		i;
 
 	i = -1;
-	stack = (int *) malloc(sizeof(int) * argc);
+	stack = (t_elem *) malloc(sizeof(t_elem) * argc);
 	if (!stack)
+	{
+		ft_printf("stack creation failed\n");
 		return (NULL);
+	}
 	while (++i < argc)
 	{
 		if (ft_atol(argv[i]) > INTMAX || ft_atol(argv[i]) < INTMIN)
@@ -65,7 +68,7 @@ int	*atoi_arr(int argc, char *argv[])
 			stack = NULL;
 			return (NULL);
 		}
-		stack[i] = ft_atoi(argv[i]);
+		stack[i].num = ft_atoi(argv[i]);
 	}
 	return (stack);
 }
@@ -80,27 +83,27 @@ void	free_args(char *args[])
 	free(args);
 }
 
-int	create_lists(int argc, char *argv[], int **stack_a, int **stack_b)
+int	create_lists(int argc, char *argv[], t_elem **stack_a, t_elem **stack_b)
 {
 	char	**args;
 	int		argn;
 
 	if (argc == 1)
-		return (-1);
+		return (0);
 	args = argv + 1;
 	argn = argc - 1;
 	if (!is_argvalid(args))
-		return (-1);
+		return (0);
 	if (argc == 2)
 	{
 		args = ft_split(argv[1], ' ');
 		argn = count_args(args);
 	}
 	*stack_a = atoi_arr(argn, args);
-	*stack_b = (int *) ft_calloc(sizeof(int), argn);
+	*stack_b = (t_elem *) malloc(sizeof(t_elem) * argn);
 	if (!*stack_b)
-		return (-1);
+		return (0);
 	if (argc == 2)
 		free_args(args);
-	return (0);
+	return (argn);
 }

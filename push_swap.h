@@ -16,16 +16,28 @@
 # define INTMAX 2147483647L
 # define INTMIN -2147483648L
 
+typedef struct s_elem
+{
+	int	num;
+	int	index;
+} t_elem;
+
+struct s_stack
+{
+	t_elem	*entry;
+	int		size;
+};
+
 // input.c
-int	create_lists(int argc, char *argv[], int **stack_a, int **stack_b);
-int	*atoi_arr(int argc, char *argv[]);
-int	is_argvalid(char *argv[]);
-int	count_args(char *argv[]);
+int		create_lists(int argc, char *argv[], t_elem **stack_a, t_elem **stack_b);
+t_elem	*atoi_arr(int argc, char *argv[]);
+int		is_argvalid(char *argv[]);
+int		count_args(char *argv[]);
 
 // push_swap.c
-void	swap(int *stack);
-void	push(int src, int *dest, int length);
-void	rot(int *stack, int length);
-void	rrot(int *stack, int length);
+void	swap(t_elem *stack);
+void	push(struct s_stack *src, struct s_stack *dest);
+void	rrot(struct s_stack stack);
+void	rot(struct s_stack stack);
 
 #endif

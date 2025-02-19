@@ -14,33 +14,48 @@
 #include "libft/libft.h"
 #include <stddef.h>
 
-int	main(int argc, char *argv[])
+void	print_arr(struct s_stack stack, int length, char c)
 {
-	int		*stack_a;
-	int		*stack_b;
-	int		argn;
-	int		i;
+	int	i;
 
 	i = 0;
-	argn = create_lists(argc, argv, &stack_a, &stack_b);
-	if (!argn)
+	while (i < length)
+	{
+		ft_printf("%c: %i\t", c, stack.entry[i].num);
+		i++;
+	}
+	ft_printf("\nsize: %i\n\n", stack.size);
+}
+
+int	main(int argc, char *argv[])
+{
+	struct s_stack stack_a;
+	struct s_stack stack_b;
+	int			argn;
+
+	argn = create_lists(argc, argv, &stack_a.entry, &stack_b.entry);
+	if (!argn || !stack_a.entry)
+	{
+		ft_printf("creating lists failed\n");
 		return (1);
-	if (stack_a == NULL)
-		return (1);
+	}
+
+	stack_a.size = argn;
+	stack_b.size = 0;
+
 	ft_printf("before\n");
-	while (stack_a[i])
-	{
-		ft_printf("a: %i\n", stack_a[i]);
-		i++;
-	}
+	print_arr(stack_a, argn, 'a');
+
+	push(&stack_a, &stack_b);
+	push(&stack_a, &stack_b);
+	rot(stack_b);
+	push(&stack_a, &stack_b);
+	swap(stack_b.entry);
+
 	ft_printf("after\n");
-	push(99, stack_a, argn);
-	i = 0;
-	while (stack_a[i])
-	{
-		ft_printf("a: %i\n", stack_a[i]);
-		i++;
-	}
-	free(stack_a);
-	free(stack_b);
+	print_arr(stack_a, argn, 'a');
+	print_arr(stack_b, argn, 'b');
+
+	free(stack_a.entry);
+	free(stack_b.entry);
 }

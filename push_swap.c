@@ -10,50 +10,62 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
+#include "push_swap.h"
 
-void	swap(int *stack)
+void	swap(t_elem *stack)
 {
-	int	temp;
+	t_elem	temp;
 
 	temp = stack[1];
 	stack[1] = stack[0];
 	stack[0] = temp;
 }
 
-void	rrot(int *stack, int length)
+void	rrot(struct s_stack stack)
 {
-	int	temp;
+	t_elem	temp;
 
-	temp = stack[length - 1];
-	while (--length > 0)
+	temp = stack.entry[stack.size - 1];
+	while (--stack.size > 0)
 	{
-		stack[length] = stack[length - 1];
+		stack.entry[stack.size] = stack.entry[stack.size - 1];
 	}
-	stack[0] = temp;
+	stack.entry[0] = temp;
 }
 
-void	rot(int *stack, int length)
+void	rot(struct s_stack stack)
 {
 	int	i;
-	int	temp;
+	t_elem	temp;
 
 	i = 0;
-	temp = stack[0];
-	while (i < length)
+	temp = stack.entry[0];
+	while (i < stack.size)
 	{
-		stack[i] = stack[i + 1];
+		stack.entry[i] = stack.entry[i + 1];
 		i++;
 	}
-	stack[length - 1] = temp;
+	stack.entry[stack.size - 1] = temp;
 }
 
-void	push(int src, int *dest, int length)
+void	push(struct s_stack *src, struct s_stack *dest)
 {
-	dest = realloc(dest, sizeof(int) * (++length));
-	if (!dest)
-		return ;
-	rrot(dest, length);
-	dest[0] = src;
+	int	i;
+
+	i = dest->size;
+	while (i > 0)
+	{
+		dest->entry[i] = dest->entry[i - 1];
+		i--;
+	}
+	dest->entry[0] = src->entry[0];
+	dest->size++;
+	i = 0;
+	while (i < src->size)
+	{
+		src->entry[i] = src->entry[i + 1];
+		i++;
+	}
+	src->size--;
 }
 
