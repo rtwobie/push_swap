@@ -6,7 +6,7 @@
 /*   By: rha-le <rha-le@student.42berlin.de>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 17:30:22 by rha-le            #+#    #+#             */
-/*   Updated: 2025/02/13 17:26:20 by rha-le           ###   ########.fr       */
+/*   Updated: 2025/02/20 21:12:52 by rha-le           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,8 @@ void	swap(t_elem *stack);
 void	push(struct s_stack *src, struct s_stack *dest);
 void	rrot(struct s_stack stack);
 void	rot(struct s_stack stack);
+
+// sort.c
+void	sort(struct s_stack a, struct s_stack b);
 
 #endif

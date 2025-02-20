@@ -6,7 +6,7 @@
 /*   By: rha-le <rha-le@student.42berlin.de>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 15:56:05 by rha-le            #+#    #+#             */
-/*   Updated: 2025/02/17 16:13:14 by rha-le           ###   ########.fr       */
+/*   Updated: 2025/02/20 21:17:10 by rha-le           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,3 @@ void	push(struct s_stack *src, struct s_stack *dest)
 	}
 	src->size--;
 }
-
