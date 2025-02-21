@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "libft/libft.h"
 
 void	swap(t_elem *stack)
 {
@@ -21,7 +22,7 @@ void	swap(t_elem *stack)
 	stack[0] = temp;
 }
 
-void	rrot(struct s_stack stack)
+void	rrot(struct s_stack stack, char name)
 {
 	t_elem	temp;
 
@@ -31,9 +32,10 @@ void	rrot(struct s_stack stack)
 		stack.entry[stack.size] = stack.entry[stack.size - 1];
 	}
 	stack.entry[0] = temp;
+	ft_printf("rr%c\n", name);
 }
 
-void	rot(struct s_stack stack)
+void	rot(struct s_stack stack, char name)
 {
 	int	i;
 	t_elem	temp;
@@ -46,6 +48,7 @@ void	rot(struct s_stack stack)
 		i++;
 	}
 	stack.entry[stack.size - 1] = temp;
+	ft_printf("r%c\n", name);
 }
 
 void	push(struct s_stack *src, struct s_stack *dest)
