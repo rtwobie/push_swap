@@ -6,7 +6,7 @@
 /*   By: rha-le <rha-le@student.42berlin.de>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 17:17:53 by rha-le            #+#    #+#             */
-/*   Updated: 2025/02/13 18:02:30 by rha-le           ###   ########.fr       */
+/*   Updated: 2025/02/22 17:06:42 by rha-le           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ t_elem	*atoi_arr(int argc, char *argv[])
 	int		i;
 
 	i = -1;
-	stack = (t_elem *) malloc(sizeof(t_elem) * argc);
+	stack = (t_elem *) ft_calloc(sizeof(t_elem), argc);
 	if (!stack)
 	{
 		ft_printf("stack creation failed\n");
@@ -100,7 +100,7 @@ int	create_lists(int argc, char *argv[], t_elem **stack_a, t_elem **stack_b)
 		argn = count_args(args);
 	}
 	*stack_a = atoi_arr(argn, args);
-	*stack_b = (t_elem *) malloc(sizeof(t_elem) * argn);
+	*stack_b = (t_elem *) ft_calloc(sizeof(t_elem), argn);
 	if (!*stack_b)
 		return (0);
 	if (argc == 2)
