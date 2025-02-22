@@ -6,7 +6,7 @@
 /*   By: rha-le <rha-le@student.42berlin.de>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 14:56:04 by rha-le            #+#    #+#             */
-/*   Updated: 2025/02/20 21:17:05 by rha-le           ###   ########.fr       */
+/*   Updated: 2025/02/22 16:36:32 by rha-le           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	indexing(t_elem *a, int size)
 }
 
 // rotates entry position to beginning
-int	calc_ops(struct s_stack stack, int entry_position, int *direction)
+int	calc_ops(t_stack a, t_stack b, int entry_position, t_op *direction)
 {
 	int	pivot;
 	int	operations;
@@ -60,33 +60,36 @@ int	calc_ops(struct s_stack stack, int entry_position, int *direction)
 	return (operations);
 }
 
-void	best_move(struct s_stack stack)
+void	best_move(t_stack a, t_stack b)
 {
-	int	direction;
-	int	operations;
+	int	min;
+	int	max;
 	int	i;
 
-	i = 1;
-	operations = calc_ops(stack, i, &direction);
-	while (i < stack.size)
+	// initial step
+	if (b.entry[0].index > b.entry[1].index)
 	{
-		i++;
-
+		max = b.entry[0].index;
+		min = b.entry[1].index;
 	}
-	if (direction == ROTATE)
+	else
 	{
-		while (operations-- > 0)
-			rot(stack, 'a');
-	}
-	if (direction == R_ROTATE)
-	{
-		while (operations-- > 0)
-			rrot(stack, 'a');
+		max = b.entry[1].index;
+		min = b.entry[0].index;
 	}
 
+	i = 0;
+	if (a.entry[i].index > max)
+	{
+		calc_ops(a.entry[i].index, max);
+	}
+	if (a.entry[i].index < min)
+	{
+		calc_ops(a.entry[i].index, min);
+	}
 }
 
-void	sort(struct s_stack a, struct s_stack b)
+void	sort(t_stack a, t_stack b)
 {
 	if (indexing(a.entry, a.size) == 1)
 	{
@@ -94,8 +97,8 @@ void	sort(struct s_stack a, struct s_stack b)
 		free(b.entry);
 		exit(1);
 	}
-	/*push(&a, &b);*/
-	/*push(&a, &b);*/
+	push(&a, &b);
+	push(&a, &b);
 
 
 }
