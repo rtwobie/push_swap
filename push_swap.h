@@ -13,6 +13,8 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+#include "libft/libft.h"
+
 # define INTMAX 2147483647L
 # define INTMIN -2147483648L
 
@@ -30,7 +32,7 @@ typedef enum e_op
 typedef struct s_elem
 {
 	int	num;
-	int	index;
+	int	idx;
 }	t_elem;
 
 typedef struct s_stack

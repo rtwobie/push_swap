@@ -34,59 +34,47 @@ int	indexing(t_elem *a, int size)
 				x++;
 			j++;
 		}
-		a[i].index = x;
+		a[i].idx = x;
 		i++;
 	}
 	return (0);
 }
 
 // rotates entry position to beginning
-int	calc_ops(t_stack a, t_stack b, int entry_position, t_op *direction)
+/*int	calc_ops(t_stack a, t_stack b, int entry_position, t_op *direction)*/
+/*{*/
+/*	int	pivot;*/
+/*	int	operations;*/
+/**/
+/*	pivot = stack.size / 2;*/
+/*	if ((stack.size - entry_position) >= pivot)*/
+/*	{*/
+/*		operations = entry_position - 1;*/
+/*		*direction = ROTATE;*/
+/*	}*/
+/*	else if ((stack.size - entry_position) < pivot)*/
+/*	{*/
+/*		operations = stack.size - entry_position + 1;*/
+/*		*direction = R_ROTATE;*/
+/*	}*/
+/*	return (operations);*/
+/*}*/
+
+int calc_pos_b(int idx_a, t_stack b)
 {
-	int	pivot;
-	int	operations;
+	int	pos_b;
 
-	pivot = stack.size / 2;
-	if ((stack.size - entry_position) >= pivot)
+	pos_b = 0;
+	while (pos_b < b.size)
 	{
-		operations = entry_position - 1;
-		*direction = ROTATE;
+		if (pos_b == 0 \
+		&& b.entry[pos_b].idx > idx_a && idx_a > b.entry[b.size - 1].idx)
+			break ;
+		if (b.entry[pos_b].idx > idx_a && idx_a > b.entry[pos_b + 1].idx)
+			break ;
+		pos_b++;
 	}
-	else if ((stack.size - entry_position) < pivot)
-	{
-		operations = stack.size - entry_position + 1;
-		*direction = R_ROTATE;
-	}
-	return (operations);
-}
-
-void	best_move(t_stack a, t_stack b)
-{
-	int	min;
-	int	max;
-	int	i;
-
-	// initial step
-	if (b.entry[0].index > b.entry[1].index)
-	{
-		max = b.entry[0].index;
-		min = b.entry[1].index;
-	}
-	else
-	{
-		max = b.entry[1].index;
-		min = b.entry[0].index;
-	}
-
-	i = 0;
-	if (a.entry[i].index > max)
-	{
-		calc_ops(a.entry[i].index, max);
-	}
-	if (a.entry[i].index < min)
-	{
-		calc_ops(a.entry[i].index, min);
-	}
+	return (pos_b);
 }
 
 void	sort(t_stack a, t_stack b)

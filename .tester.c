@@ -20,8 +20,8 @@ void	print_arr(t_stack a, t_stack b, int length)
 	i = 0;
 	while (i < length)
 	{
-		ft_printf("a: [num= %i, index= %i]\t", a.entry[i].num, a.entry[i].index);
-		ft_printf("b: [num= %i, index= %i]\n", b.entry[i].num, b.entry[i].index);
+		ft_printf("a: [num= %i, index= %i]\t", a.entry[i].num, a.entry[i].idx);
+		ft_printf("b: [num= %i, index= %i]\n", b.entry[i].num, b.entry[i].idx);
 		i++;
 	}
 	ft_printf("\nsize: %i\t%i\n\n", a.size, b.size);
