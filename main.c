@@ -35,10 +35,12 @@ int	main(int argc, char *argv[])
 	stack_a.size = argn;
 	stack_b.name = 'b';
 	stack_b.size = 0;
-	op_manager(PUSH, 5, &stack_a, &stack_b);
 	sort(stack_a, stack_b);
+	op_manager(PUSH, 5, &stack_a, &stack_b);
 	print_arr(stack_a, stack_b, argn);
-	/*ft_printf("pos_b: %i", calc_pos_b(stack_a.entry[0].idx, stack_b));*/
+	for (int i = 0; i < 5; i++)
+		ft_printf("pos_b: %i\n", calc_pos_b(stack_a.entry[i].idx, stack_b));
+
 
 	free(stack_a.entry);
 	free(stack_b.entry);

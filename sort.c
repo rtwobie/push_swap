@@ -59,21 +59,31 @@ int	indexing(t_elem *a, int size)
 /*	}*/
 /*	return (operations);*/
 /*}*/
-
+#include <limits.h>
 int calc_pos_b(int idx_a, t_stack b)
 {
 	int	pos_b;
+	int lowest_high;
+	int highest_low;
 
 	pos_b = 0;
+	lowest_high = INT_MAX;
+	highest_low = 0;
 	while (pos_b < b.size)
 	{
-		if (pos_b == 0 \
-		&& b.entry[pos_b].idx > idx_a && idx_a > b.entry[b.size - 1].idx)
-			break ;
-		if (b.entry[pos_b].idx > idx_a && idx_a > b.entry[pos_b + 1].idx)
-			break ;
+		if (b.entry[pos_b].idx > idx_a)
+		{
+			if(b.entry[pos_b].idx < lowest_high)
+				lowest_high = b.entry[pos_b].idx;
+		}
+		if (b.entry[pos_b].idx < idx_a)
+		{
+			if(b.entry[pos_b].idx > highest_low)
+				highest_low = b.entry[pos_b].idx;
+		}
 		pos_b++;
 	}
+	ft_printf("higher: %i\t lower: %i\n", lowest_high, highest_low);
 	return (pos_b);
 }
 
@@ -85,8 +95,5 @@ void	sort(t_stack a, t_stack b)
 		free(b.entry);
 		exit(1);
 	}
-	push(&a, &b);
-	push(&a, &b);
-
 
 }
