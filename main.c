@@ -6,7 +6,7 @@
 /*   By: rha-le <rha-le@student.42berlin.de>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 16:35:55 by rha-le            #+#    #+#             */
-/*   Updated: 2025/02/22 17:15:52 by rha-le           ###   ########.fr       */
+/*   Updated: 2025/02/27 19:46:48 by rha-le           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ int	main(int argc, char *argv[])
 	stack_b.name = 'b';
 	stack_b.size = 0;
 	sort(stack_a, stack_b);
-	op_manager(PUSH, 5, &stack_a, &stack_b);
+	op_manager(PUSH, 3, &stack_a, &stack_b);
 	print_arr(stack_a, stack_b, argn);
-	for (int i = 0; i < 5; i++)
-		ft_printf("pos_b: %i\n", calc_pos_b(stack_a.entry[i].idx, stack_b));
+	for (int i = 0; i < stack_a.size; i++)
+		ft_printf("--- [pos_b: %i] ---\n", calc_pos_b(stack_a.entry[i].idx, stack_b));
 
 
 	free(stack_a.entry);
