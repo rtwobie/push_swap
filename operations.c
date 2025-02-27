@@ -6,7 +6,7 @@
 /*   By: rha-le <rha-le@student.42berlin.de>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 15:56:05 by rha-le            #+#    #+#             */
-/*   Updated: 2025/02/22 17:07:27 by rha-le           ###   ########.fr       */
+/*   Updated: 2025/02/27 18:24:52 by rha-le           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	rrot(t_stack stack)
 
 void	rot(t_stack stack)
 {
-	int	i;
+	int		i;
 	t_elem	temp;
 
 	i = 0;
@@ -69,4 +69,3 @@ void	push(t_stack *src, t_stack *dest)
 	}
 	src->size--;
 }
-
