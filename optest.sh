@@ -11,6 +11,15 @@ case $1 in
     3)
         ./push_swap	3 5 1 -2 -1 2 6
         ;;
+    4)
+        gdb --args ./push_swap	1 3 5 -2 -1 2 6
+        ;;
+    5)
+        gdb --args ./push_swap	5 1 3 -2 -1 2 6
+        ;;
+    6)
+        gdb --args ./push_swap	3 5 1 -2 -1 2 6
+        ;;
     *)
 		echo "Invalid Option"
         ;;
