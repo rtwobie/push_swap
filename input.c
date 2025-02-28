@@ -6,7 +6,7 @@
 /*   By: rha-le <rha-le@student.42berlin.de>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 17:17:53 by rha-le            #+#    #+#             */
-/*   Updated: 2025/02/22 17:06:42 by rha-le           ###   ########.fr       */
+/*   Updated: 2025/02/28 17:47:01 by rha-le           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ t_elem	*atoi_arr(int argc, char *argv[])
 			stack = NULL;
 			return (NULL);
 		}
-		stack[i].num = ft_atoi(argv[i]);
+		stack[i].val = ft_atoi(argv[i]);
 	}
 	return (stack);
 }

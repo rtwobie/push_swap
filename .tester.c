@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tester.c                                           :+:      :+:    :+:   */
+/*   .tester.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rha-le <rha-le@student.42berlin.de>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 17:10:01 by rha-le            #+#    #+#             */
-/*   Updated: 2025/02/22 17:13:52 by rha-le           ###   ########.fr       */
+/*   Updated: 2025/02/28 17:47:46 by rha-le           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	print_arr(t_stack a, t_stack b, int length)
 	i = 0;
 	while (i < length)
 	{
-		ft_printf("a: [num= %i, index= %i]\t", a.entry[i].num, a.entry[i].idx);
-		ft_printf("b: [num= %i, index= %i]\n", b.entry[i].num, b.entry[i].idx);
+		ft_printf("a: [num= %i, index= %i]\t", a.entry[i].val, a.entry[i].idx);
+		ft_printf("b: [num= %i, index= %i]\n", b.entry[i].val, b.entry[i].idx);
 		i++;
 	}
 	ft_printf("\nsize: %i\t%i\n\n", a.size, b.size);
