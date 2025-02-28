@@ -6,7 +6,7 @@
 /*   By: rha-le <rha-le@student.42berlin.de>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 17:30:22 by rha-le            #+#    #+#             */
-/*   Updated: 2025/02/27 18:29:58 by rha-le           ###   ########.fr       */
+/*   Updated: 2025/02/28 21:00:52 by rha-le           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,17 @@ typedef enum e_op
 	PUSH,
 }	t_op;
 
+typedef struct s_vars
+{
+	int	pos_a;
+	int	pos_b;
+	int	operations;
+	int	direction;
+}	t_vars;
+
 typedef struct s_elem
 {
-	int	num;
+	int	val;
 	int	idx;
 }	t_elem;
 
@@ -60,14 +68,21 @@ void	rot_manager(t_stack stack1, t_stack stack2, t_op type);
 void	op_manager(t_op type, int amount, t_stack *src, t_stack *dest);
 
 // sort.c
-void	sort(t_stack a, t_stack b);
+void	sort(t_stack *a, t_stack *b);
 int		indexing(t_elem *a, int size);
 int		calc_pos(t_stack stack, int entry_position, t_op *direction);
 
 // calc_operations.c
+int		calc_pos_b(int idx_a, t_stack *b);
+t_vars	best_direction(int pos_a, int size_a, int pos_b, int size_b);
+int		build_instruction(t_vars *best, t_stack *a, t_stack *b);
+void	move(t_stack *a, t_stack *b);
+
+//utils_op.c
 t_elem	up_bound(t_elem up_bnd, int pos_b, int current_idx, int idx_a);
 t_elem	low_bound(t_elem low_bnd, int pos_b, int current_idx, int idx_a);
-int	calc_pos_b(int idx_a, t_stack b);
+int		max(int nb1, int nb2);
+int		min(int nb1, int nb2);
 
 //void	ft(struct s_stack stack, char name, int entry_position);
 
