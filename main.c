@@ -16,32 +16,26 @@
 
 // WARNING: remove when done!
 void	print_arr(t_stack a, t_stack b, int length);
-void	OP_TESTER(t_stack stack_a, t_stack stack_b, int argn);
 
 int	main(int argc, char *argv[])
 {
 	t_stack	stack_a;
 	t_stack	stack_b;
-	int				argn;
+	int		argn;
 
 	argn = create_lists(argc, argv, &stack_a.entry, &stack_b.entry);
 	if (!argn || !stack_a.entry)
-	{
-		ft_printf("creating lists failed\n");
 		return (1);
-	}
 	stack_a.name = 'a';
 	stack_a.size = argn;
 	stack_b.name = 'b';
 	stack_b.size = 0;
-	sort(&stack_a, &stack_b);
-	op_manager(PUSH, 3, &stack_a, &stack_b);
-	print_arr(stack_a, stack_b, argn);
-
-	//for (int i = 0; i < stack_a.size; i++)
-		//ft_printf("--- [pos_b: %i] ---\n", calc_pos_b(stack_a.entry[i].idx, stack_b));
-	move(&stack_a, &stack_b);
-
+	if (sort(&stack_a, &stack_b) != 0)
+	{
+		free(stack_a.entry);
+		free(stack_b.entry);
+		return (1);
+	}
 	free(stack_a.entry);
 	free(stack_b.entry);
 }
