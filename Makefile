@@ -2,7 +2,8 @@ NAME = push_swap
 HEADER = push_swap.h
 CC = cc
 CFLAGS = -Wall -Werror -Wextra -g
-SRC = main.c operations.c operation_manager.c input.c sort.c calc_operations.c op_utils.c .tester.c
+SRC = main.c operations.c operation_manager.c input.c sort.c calc_operations.c \
+	  move.c op_utils.c
 OBJ = $(SRC:.c=.o)
 LIBFT_DIR = ./libft/
 LIBFT = $(LIBFT_DIR)/libft.a
