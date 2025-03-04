@@ -6,7 +6,7 @@
 /*   By: rha-le <rha-le@student.42berlin.de>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 17:30:22 by rha-le            #+#    #+#             */
-/*   Updated: 2025/03/03 15:42:11 by rha-le           ###   ########.fr       */
+/*   Updated: 2025/03/04 21:13:43 by rha-le           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,20 +57,21 @@ int		is_argvalid(char *argv[]);
 int		count_args(char *argv[]);
 
 // operations.c
-void	swap(t_stack stack);
+void	swap(t_stack *stack);
 void	push(t_stack *src, t_stack *dest);
-void	rrot(t_stack stack);
-void	rot(t_stack stack);
+void	rrot(t_stack *stack);
+void	rot(t_stack *stack);
 
 // operation_manager.c
-void	swap_manager(t_stack *stack1, t_stack *stack2, t_op type);
-void	rot_manager(t_stack *stack1, t_stack *stack2, t_op type);
-void	op_manager(t_op type, int amount, t_stack *src, t_stack *dest);
+void	operation(t_stack *stack, t_op type);
+void	operation2(t_stack *stack1, t_stack *stack2, t_op type);
+void	op_manager(t_op type, int amount, t_stack *stack1, t_stack *stack2);
 
 // sort.c
-int		sort(t_stack *a, t_stack *b);
 int		indexing(t_stack *a);
-int		calc_pos(t_stack stack, int entry_position, t_op *direction);
+int		is_sorted(t_stack *a);
+void	sort_three(t_stack *a);
+int		sort(t_stack *a, t_stack *b);
 
 // calc_operations.c
 int		calc_pos_b(int idx_a, t_stack *b);
