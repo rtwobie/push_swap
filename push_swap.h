@@ -6,7 +6,7 @@
 /*   By: rha-le <rha-le@student.42berlin.de>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 17:30:22 by rha-le            #+#    #+#             */
-/*   Updated: 2025/03/04 21:13:43 by rha-le           ###   ########.fr       */
+/*   Updated: 2025/03/05 01:46:41 by rha-le           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ void	rrot(t_stack *stack);
 void	rot(t_stack *stack);
 
 // operation_manager.c
-void	operation(t_stack *stack, t_op type);
-void	operation2(t_stack *stack1, t_stack *stack2, t_op type);
+void	operation(t_op type, int amount, t_stack *stack);
+void	operation2(t_op type, int amount, t_stack *stack1, t_stack *stack2);
 void	op_manager(t_op type, int amount, t_stack *stack1, t_stack *stack2);
 
 // sort.c
@@ -72,6 +72,11 @@ int		indexing(t_stack *a);
 int		is_sorted(t_stack *a);
 void	sort_three(t_stack *a);
 int		sort(t_stack *a, t_stack *b);
+
+// sort_utils.c
+int		find_smallest(t_stack *stack);
+int		find_biggest(t_stack *stack);
+void	rot_to_top(t_stack *stack, int pos);
 
 // calc_operations.c
 int		calc_pos_b(int idx_a, t_stack *b);
@@ -82,7 +87,7 @@ int		build_instruction(t_vars *best, t_stack *a, t_stack *b);
 //move.c
 void	move_manager(t_stack *a, t_stack *b);
 
-//utils_op.c
+//op_utils.c
 t_elem	up_bound(t_elem up_bnd, int pos_b, int current_idx, int idx_a);
 t_elem	low_bound(t_elem low_bnd, int pos_b, int current_idx, int idx_a);
 int		max(int nb1, int nb2);

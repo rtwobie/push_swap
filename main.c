@@ -6,7 +6,7 @@
 /*   By: rha-le <rha-le@student.42berlin.de>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 16:35:55 by rha-le            #+#    #+#             */
-/*   Updated: 2025/02/28 21:01:29 by rha-le           ###   ########.fr       */
+/*   Updated: 2025/03/05 02:17:11 by rha-le           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,18 +41,14 @@ int	main(int argc, char *argv[])
 	stack_a.size = argn;
 	stack_b.name = 'b';
 	stack_b.size = 0;
-
-	if (indexing(&stack_a) != 0)
+	print_arr(&stack_a, &stack_b, argn);
+	if (sort(&stack_a, &stack_b) != 0)
+	{
+		free(stack_a.entry);
+		free(stack_b.entry);
 		return (1);
+	}
 	print_arr(&stack_a, &stack_b, argn);
-	sort_three(&stack_a);
-	print_arr(&stack_a, &stack_b, argn);
-	/*if (sort(&stack_a, &stack_b) != 0)*/
-	/*{*/
-	/*	free(stack_a.entry);*/
-	/*	free(stack_b.entry);*/
-	/*	return (1);*/
-	/*}*/
 	free(stack_a.entry);
 	free(stack_b.entry);
 }
