@@ -61,12 +61,12 @@ void	push(t_stack *src, t_stack *dest)
 		i--;
 	}
 	dest->entry[0] = src->entry[0];
-	dest->size++;
 	i = 0;
-	while (i < src->size)
+	while (i < src->size - 1)
 	{
 		src->entry[i] = src->entry[i + 1];
 		i++;
 	}
+	dest->size++;
 	src->size--;
 }
