@@ -15,9 +15,10 @@
 
 # include "defs.h"
 
-t_elem	*atoi_arr(int argc, char *argv[]);
 int		is_argvalid(char *argv[]);
 int		count_args(char *argv[]);
+t_elem	*atoi_arr(int argc, char *argv[]);
 void	free_args(char *args[]);
+int		create_lists(int argc, char *argv[], t_stack *a, t_stack *b);
 
 #endif // !INPUT_H
