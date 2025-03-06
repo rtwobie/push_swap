@@ -26,15 +26,14 @@ typedef enum e_op
 	PUSH,
 }	t_op;
 
+// operation_manager.c
+void	operation(t_op type, int amount, t_stack *stack);
+void	operation2(t_op type, int amount, t_stack *stack1, t_stack *stack2);
+
 // operations.c
 void	swap(t_stack *stack);
 void	push(t_stack *src, t_stack *dest);
 void	rrot(t_stack *stack);
 void	rot(t_stack *stack);
-
-// operation_manager.c
-void	operation(t_op type, int amount, t_stack *stack);
-void	operation2(t_op type, int amount, t_stack *stack1, t_stack *stack2);
-void	op_manager(t_op type, int amount, t_stack *stack1, t_stack *stack2);
 
 #endif // !OPERATIONS_H

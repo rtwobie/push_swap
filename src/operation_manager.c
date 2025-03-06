@@ -36,10 +36,16 @@ void	operation(t_op type, int amount, t_stack *stack)
 	}
 }
 
+// my algorithm doesnt use SWAP2 - omitted to pass norminette
 void	operation2(t_op type, int amount, t_stack *stack1, t_stack *stack2)
 {
 	while (amount > 0)
 	{
+		if (type == PUSH)
+		{
+			push(stack1, stack2);
+			ft_printf("p%c\n", stack2->name);
+		}
 		if (type == ROTATE2)
 		{
 			rot(stack1);
@@ -52,36 +58,6 @@ void	operation2(t_op type, int amount, t_stack *stack1, t_stack *stack2)
 			rrot(stack2);
 			ft_printf("rrr\n");
 		}
-		if (type == SWAP2)
-		{
-			swap(stack1);
-			swap(stack2);
-			ft_printf("ss\n");
-		}
 		amount--;
-	}
-}
-
-void	op_manager(t_op type, int amount, t_stack *stack1, t_stack *stack2)
-{
-	if (type == SWAP)
-		operation(SWAP, amount, stack1);
-	if (type == ROTATE)
-		operation(ROTATE, amount, stack1);
-	if (type == R_ROTATE)
-		operation(R_ROTATE, amount, stack1);
-	if (type == SWAP2)
-		operation2(SWAP2, amount, stack1, stack2);
-	if (type == ROTATE2)
-		operation2(ROTATE2, amount, stack1, stack2);
-	if (type == R_ROTATE2)
-		operation2(R_ROTATE2, amount, stack1, stack2);
-	if (type == PUSH)
-	{
-		while (amount-- > 0)
-		{
-			push(stack1, stack2);
-			ft_printf("p%c\n", stack2->name);
-		}
 	}
 }
