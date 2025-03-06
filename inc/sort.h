@@ -15,10 +15,16 @@
 
 # include "defs.h"
 
+//sort.c
 int		indexing(t_stack *a);
 void	rot_to_top(t_stack *stack, int pos);
 void	push_back(t_stack *a, t_stack *b);
 void	sort_three(t_stack *a);
-void	move_manager(t_stack *a, t_stack *b);
+int		sort(t_stack *a, t_stack *b);
+
+//sort_utils.c
+int		find_smallest(t_stack *stack);
+int		find_biggest(t_stack *stack);
+int		is_sorted(t_stack *a);
 
 #endif // !SORT_H

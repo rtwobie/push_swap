@@ -11,12 +11,11 @@
 /* ************************************************************************** */
 
 #include "defs.h"
-#include "sort_utils.h"
 #include "operations.h"
+#include "sort.h"
 #include "move.h"
-#include "instruction.h"
 
-// index array by value and fails at duplicates
+// checks also for duplicates
 int	indexing(t_stack *a)
 {
 	int	i;
@@ -86,26 +85,38 @@ void	push_back(t_stack *a, t_stack *b)
 	{
 		if (a->entry[a->size - 1].idx > b->entry[0].idx && limit > 0)
 		{
-			op_manager(R_ROTATE, 1, a, b);
+			operation(R_ROTATE, 1, a);
 			limit--;
 		}
 		else
-			op_manager(PUSH, 1, b, a);
+			operation2(PUSH, 1, b, a);
 	}
 }
 
-void	move_manager(t_stack *a, t_stack *b)
+int	sort(t_stack *a, t_stack *b)
 {
-	t_vars	instruction;
+	int	i;
 
-	if (build_instruction(&instruction, a, b) != 0)
-		return ;
-	if (instruction.direction == 0)
-		move_upup(&instruction, a, b);
-	if (instruction.direction == 1)
-		move_updown(&instruction, a, b);
-	if (instruction.direction == 2)
-		move_downup(&instruction, a, b);
-	if (instruction.direction == 3)
-		move_downdown(&instruction, a, b);
+	if (indexing(a) != 0)
+		return (1);
+	if (is_sorted(a) || a->size < 3)
+	{
+		rot_to_top(a, find_smallest(a));
+		return (0);
+	}
+	if (a->size == 4)
+		operation2(PUSH, 1, a, b);
+	else if (a->size >= 5)
+		operation2(PUSH, 2, a, b);
+	i = a->size;
+	while (i > 3)
+	{
+		move_manager(a, b);
+		operation2(PUSH, 1, a, b);
+		i--;
+	}
+	sort_three(a);
+	push_back(a, b);
+	rot_to_top(a, find_smallest(a));
+	return (0);
 }
