@@ -31,6 +31,7 @@ SRC			:=
 vpath %.c src
 SRC			+= main.c
 SRC			+= input.c
+SRC			+= input_utils.c
 SRC			+= sort.c
 SRC			+= sort_utils.c
 SRC			+= operations.c
