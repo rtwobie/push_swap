@@ -74,4 +74,8 @@ re:
 valgrind:
 	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --track-fds=yes ./$(NAME) $(ARGS)
 
+checker_linux:
+	./$(NAME) $(ARGS) | ./checker_linux $(ARGS)
+
 .PHONY: all clean fclean re
+.PHONY: checker_linux
