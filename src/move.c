@@ -28,35 +28,55 @@ void	move_upup(t_vars *instruction, t_stack *a, t_stack *b)
 
 	maximum = max(instruction->pos_a, instruction->pos_b);
 	minimum = min(instruction->pos_a, instruction->pos_b);
-	op_manager(ROTATE2, minimum, a, b);
+	operation2(ROTATE2, minimum, a, b);
 	if (instruction->pos_a == maximum)
-		op_manager(ROTATE, maximum - minimum, a, b);
+		operation(ROTATE, maximum - minimum, a);
 	else if (instruction->pos_b == maximum)
-		op_manager(ROTATE, maximum - minimum, b, a);
+		operation(ROTATE, maximum - minimum, b);
 }
 
 void	move_updown(t_vars *instruction, t_stack *a, t_stack *b)
 {
-	op_manager(ROTATE, instruction->pos_a, a, b);
-	op_manager(R_ROTATE, b->size - instruction->pos_b, b, a);
+	operation(ROTATE, instruction->pos_a, a);
+	operation(R_ROTATE, b->size - instruction->pos_b, b);
 }
 
 void	move_downup(t_vars *instruction, t_stack *a, t_stack *b)
 {
-	op_manager(R_ROTATE, a->size - instruction->pos_a, a, b);
-	op_manager(ROTATE, instruction->pos_b, b, a);
+	operation(R_ROTATE, a->size - instruction->pos_a, a);
+	operation(ROTATE, instruction->pos_b, b);
 }
 
 void	move_downdown(t_vars *instruction, t_stack *a, t_stack *b)
 {
-	int	maximum;
-	int	minimum;
+	int	second_prio;
+	int	first_prio;
+	int	op_on_a;
+	int	op_on_b;
 
-	maximum = max(a->size - instruction->pos_a, b->size - instruction->pos_b);
-	minimum = min(a->size - instruction->pos_a, b->size - instruction->pos_b);
-	op_manager(R_ROTATE2, minimum, a, b);
-	if (instruction->pos_a == maximum)
-		op_manager(R_ROTATE, maximum - minimum, a, b);
-	else if (instruction->pos_b == maximum)
-		op_manager(R_ROTATE, maximum - minimum, b, a);
+	op_on_a = a->size - instruction->pos_a;
+	op_on_b = b->size - instruction->pos_b;
+	second_prio = max(op_on_a, op_on_b);
+	first_prio = min(op_on_a, op_on_b);
+	operation2(R_ROTATE2, first_prio, a, b);
+	if (op_on_a == second_prio)
+		operation(R_ROTATE, second_prio - first_prio, a);
+	else if (op_on_b == second_prio)
+		operation(R_ROTATE, second_prio - first_prio, b);
+}
+
+void	move_manager(t_stack *a, t_stack *b)
+{
+	t_vars	instruction;
+
+	if (build_instruction(&instruction, a, b) != 0)
+		return ;
+	if (instruction.direction == 0)
+		move_upup(&instruction, a, b);
+	if (instruction.direction == 1)
+		move_updown(&instruction, a, b);
+	if (instruction.direction == 2)
+		move_downup(&instruction, a, b);
+	if (instruction.direction == 3)
+		move_downdown(&instruction, a, b);
 }

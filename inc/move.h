@@ -20,5 +20,6 @@ void	move_upup(t_vars *instruction, t_stack *a, t_stack *b);
 void	move_updown(t_vars *instruction, t_stack *a, t_stack *b);
 void	move_downup(t_vars *instruction, t_stack *a, t_stack *b);
 void	move_downdown(t_vars *instruction, t_stack *a, t_stack *b);
+void	move_manager(t_stack *a, t_stack *b);
 
 #endif // !MOVE_H
