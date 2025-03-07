@@ -13,22 +13,22 @@
 #include <stddef.h>
 #include <stdlib.h>
 
-int	count_args(char *argv[])
+int	count_args(char **arguments)
 {
 	size_t	i;
 
 	i = 0;
-	while (argv[i])
+	while (arguments[i])
 		i++;
 	return (i);
 }
 
-void	free_args(char *args[])
+void	free_args(char **arguments)
 {
 	size_t	i;
 
 	i = 0;
-	while (args[i])
-		free(args[i++]);
-	free(args);
+	while (arguments[i])
+		free(arguments[i++]);
+	free(arguments);
 }

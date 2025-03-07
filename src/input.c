@@ -81,7 +81,7 @@ int	create_lists(int argc, char *argv[], t_stack *a, t_stack *b)
 		return (0);
 	arguments = argv + 1;
 	arg_count = argc - 1;
-	if (!is_inputvalid(arguments))
+	if (!is_inputvalid(argv + 1))
 		return (0);
 	if (argc == 2)
 	{
