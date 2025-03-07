@@ -41,67 +41,60 @@ int	is_argvalid(char *arg)
 	return (1);
 }
 
-int	is_inputvalid(char *argv[])
+int	is_inputvalid(char **arguments)
 {
 	size_t	i;
 
 	i = 0;
-	while (argv[i])
+	while (arguments[i])
 	{
-		if (!is_argvalid(argv[i]))
+		if (!is_argvalid(arguments[i]))
+			return (0);
+		if (ft_atoll(arguments[i]) > INTMAX || \
+			ft_atoll(arguments[i]) < INTMIN)
 			return (0);
 		i++;
 	}
 	return (1);
 }
 
-t_elem	*atoi_arr(int argc, char *argv[])
+t_elem	*atoi_arr(int arg_count, char **arguments)
 {
 	t_elem	*stack;
 	int		i;
 
-	stack = (t_elem *) ft_calloc(sizeof(t_elem), argc);
+	stack = (t_elem *) ft_calloc(sizeof(t_elem), arg_count);
 	if (!stack)
 		return (NULL);
 	i = -1;
-	while (++i < argc)
-	{
-		if (ft_atoll(argv[i]) > INTMAX || ft_atoll(argv[i]) < INTMIN)
-		{
-			free(stack);
-			stack = NULL;
-			return (NULL);
-		}
-		stack[i].val = ft_atoi(argv[i]);
-	}
+	while (++i < arg_count)
+		stack[i].val = ft_atoi(arguments[i]);
 	return (stack);
 }
 
 int	create_lists(int argc, char *argv[], t_stack *a, t_stack *b)
 {
-	char	**args;
-	int		argn;
+	char	**arguments;
+	int		arg_count;
 
 	if (argc == 1)
 		return (0);
-	args = argv + 1;
-	argn = argc - 1;
-	if (!is_inputvalid(args))
+	arguments = argv + 1;
+	arg_count = argc - 1;
+	if (!is_inputvalid(arguments))
 		return (0);
 	if (argc == 2)
 	{
-		args = ft_split(argv[1], ' ');
-		argn = count_args(args);
+		arguments = ft_split(argv[1], ' ');
+		arg_count = count_args(arguments);
 	}
-	a->entry = atoi_arr(argn, args);
+	a->entry = atoi_arr(arg_count, arguments);
 	if (!a->entry)
 		return (0);
-	if (argn == 1)
-		return (argn);
-	b->entry = (t_elem *) ft_calloc(sizeof(t_elem), argn);
+	if (argc == 2)
+		free_args(arguments);
+	b->entry = (t_elem *) ft_calloc(sizeof(t_elem), arg_count);
 	if (!b->entry)
 		return (0);
-	if (argc == 2)
-		free_args(args);
-	return (argn);
+	return (arg_count);
 }
