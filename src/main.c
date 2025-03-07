@@ -24,30 +24,37 @@ void	init_stacks(t_stack *a, t_stack *b, int size)
 	b->size = 0;
 }
 
+void	at_exit(t_stack *a, t_stack *b)
+{
+	free(a->entry);
+	free(b->entry);
+}
+
 int	main(int argc, char *argv[])
 {
-	t_stack	stack_a;
-	t_stack	stack_b;
+	t_stack	a;
+	t_stack	b;
 	int		argn;
 
 	if (argc == 1)
 		return (1);
-	argn = create_lists(argc, argv, &stack_a, &stack_b);
+	argn = create_lists(argc, argv, &a, &b);
 	if (!argn)
 	{
 		ft_putstr_fd("Error\n", 2);
 		return (1);
 	}
 	if (argn == 1)
-		return (0);
-	init_stacks(&stack_a, &stack_b, argn);
-	if (sort(&stack_a, &stack_b) != 0)
 	{
-		free(stack_a.entry);
-		free(stack_b.entry);
+		at_exit(&a, &b);
+		return (0);
+	}
+	init_stacks(&a, &b, argn);
+	if (sort(&a, &b) != 0)
+	{
+		at_exit(&a, &b);
 		ft_putstr_fd("Error\n", 2);
 		return (1);
 	}
-	free(stack_a.entry);
-	free(stack_b.entry);
+	at_exit(&a, &b);
 }
