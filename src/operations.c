@@ -42,7 +42,7 @@ void	rot(t_stack *stack)
 
 	i = 0;
 	temp = stack->entry[0];
-	while (i < stack->size)
+	while (i < stack->size - 1)
 	{
 		stack->entry[i] = stack->entry[i + 1];
 		i++;
