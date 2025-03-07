@@ -11,10 +11,10 @@ LIBFT 		:= libft.a
 
 # flags
 CFLAGS		:=
+CFLAGS		+= -O2
 CFLAGS		+= -Wall
 CFLAGS		+= -Werror
 CFLAGS		+= -Wextra
-CFLAGS		+= -g
 
 CPPFLAGS	:=
 CPPFLAGS	+= $(addprefix -I, $(INC_DIR))
@@ -24,6 +24,21 @@ LDFLAGS		:=
 LDFLAGS		+= -L$(LIBFT_DIR)
 
 LDLIBS		:= -lft
+
+ifeq ($(DEBUG), 1)
+	CFLAGS	+= -ggdb3 -O0
+	LDFLAGS	+= -ggdb3 -O0
+endif
+
+ifeq ($(ASAN), 1)
+	CFLAGS	+= -fsanitize=address
+	LDFLAGS	+= -fsanitize=address
+endif
+
+ifeq ($(LSAN), 1)
+	CFLAGS	+= -fsanitize=leak
+	LDFLAGS	+= -fsanitize=leak
+endif
 
 # sources
 SRC			:=
