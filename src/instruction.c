@@ -77,6 +77,8 @@ t_vars	get_direction(int pos_a, int size_a, int pos_b, int size_b)
 	return (instruction);
 }
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
 int	build_instruction(t_vars *best, t_stack *a, t_stack *b)
 {
 	int		i;
@@ -104,3 +106,4 @@ int	build_instruction(t_vars *best, t_stack *a, t_stack *b)
 	free(instructions);
 	return (0);
 }
+#pragma GCC diagnostic pop
